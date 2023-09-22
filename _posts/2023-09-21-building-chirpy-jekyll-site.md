@@ -142,7 +142,7 @@ There's more you can do using markdown, but this isn't the place for that. But [
 The `_config.yml` file does a good job with the `#commented` out lines to help you configure your site.
 
 **Note:**
-Don't edit `baseurl: ""` if you're hosting with GitHub.
+Don't edit `baseurl: ""` if you're being hosted by GitHub.
 
 ## Step 6: Locally Host Your Site
 
