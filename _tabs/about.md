@@ -32,8 +32,6 @@ Stay tuned for my future certifications in 2024 as I continue to expand my exper
 
 ## My Blog's Purpose
 
-This blog is where I document and share my homelab experiments and insights. I'm passionate about technology and continuously strive to expand my knowledge, not only for personal growth but also to help others on their journey to IT proficiency and certification success.
-
-Join me as I explore the exciting world of IT, share my experiences, and provide valuable notes and tips to help you excel in your certification pursuits.
+This blog is where I document and share my homelab experiments and insights. I'm passionate about technology and continuously strive to expand my knowledge, not only for personal growth but also to (*hopefully*) help others save some time.
 
 Let's learn and grow together! 🌟
