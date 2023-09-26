@@ -5,7 +5,7 @@ categories: [proxmox,homelab]
 tags: [proxmox,homelab,]
 ---
 
-![small-server](../assets/images/small-server.jpg)
+![small-server](/assets/images/small-server.jpg)
 _Small Server_
 
 ## Introduction
