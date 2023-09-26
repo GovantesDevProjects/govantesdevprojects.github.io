@@ -5,7 +5,8 @@ categories: [proxmox,homelab]
 tags: [proxmox,homelab,]
 ---
 
-![Small Server](/assets/images/small-server.jpg)
+![small-server](/assets/images/small-server.jpg)
+_Small Server_
 
 ## Introduction
 
@@ -19,7 +20,8 @@ Before we dive into the Proxmox setup, it's essential to ensure that your system
    * Disable the two `enterprise.proxmox.com/...` repositories
    * Add the `pve-no-subscription` repository
    * Your repositories page should now look like this:
-    ![Repository Example](/assets/images/repositories-config.png)
+    ![repositories-config](/assets/images/repositories-config.png)
+    _Repositories Configuration_
 2. Now update the repositories
 
    ```bash
@@ -46,7 +48,8 @@ Proxmox supports various storage backends, and ZFS is a popular choice due to it
 
   2. Go to disks/ZFS and click `Create:ZFS`
 
-      ![ZFS Pool](/assets/images/nvme_pool.png)
+      ![nvme_pool](/assets/images/nvme_pool.png)
+      _NVMe pool_
 
   3. I now have a 430GB ZFS pool on my boot drive. In future posts, I'll cover how to create new directories within your ZFS pool.
 
@@ -54,7 +57,8 @@ Proxmox supports various storage backends, and ZFS is a popular choice due to it
 
   1. Ensuring the health of your hard drives is critical. To ensure SMART Monitoring is enabled using the GUI:
 
-      ![SMART Monitoring GUI](assets/images/smart-monitoring.png)
+      ![smart-monitoring](assets/images/smart-monitoring.png)
+      _SMART Monitoring_
 
       * By default, SMART Monitoring is enabled
   2. Using the command line:
@@ -132,7 +136,8 @@ PCI passthrough allows you to assign physical devices to virtual machines. Ensur
 To create VLANs in Proxmox, you can use the Linux bridge as a basis:
 
 1. Go to networks, select Linux Bridge, and edit
-  ![VLAN aware](/assets/images/vlan-aware.png)
+  ![vlan-aware](/assets/images/vlan-aware.png)
+  _VLAN Aware_
 2. Check VLAN aware and click OK
 
 ### Step 6: Scheduling Backups with Proxmox

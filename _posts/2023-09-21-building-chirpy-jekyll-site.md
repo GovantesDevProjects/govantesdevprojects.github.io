@@ -5,7 +5,8 @@ categories: [self-hosted, website]
 tags: [jekyll,website,github,gitlab]
 ---
 
-![Chirpy Logo](/assets/images/chirpy-logo.jpg)
+![chirpy-logo](/assets/images/chirpy-logo.jpg)
+_Chirpy Logo_
 
 If you're looking to create a beautiful and customizable website quickly, Jekyll and the Chirpy theme are an excellent choice. In this tutorial, I'll guide you through the process of setting up your website (hosted for free on GitHub), from installing dependencies to creating your first post.
 
