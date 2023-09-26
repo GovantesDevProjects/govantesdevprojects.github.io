@@ -5,7 +5,7 @@ categories: [proxmox,homelab]
 tags: [proxmox,homelab,]
 ---
 
-![small-server](/assets/images/small-server.jpg)
+![small-server](../assets/images/small-server.jpg)
 _Small Server_
 
 ## Introduction
@@ -57,7 +57,7 @@ Proxmox supports various storage backends, and ZFS is a popular choice due to it
 
   1. Ensuring the health of your hard drives is critical. To ensure SMART Monitoring is enabled using the GUI:
 
-      ![smart-monitoring](assets/images/smart-monitoring.png)
+      ![smart-monitoring](/assets/images/smart-monitoring.png)
       _SMART Monitoring_
 
       * By default, SMART Monitoring is enabled
