@@ -1,9 +1,11 @@
 ---
 title: Why I Chose Used Mini PCs (Beelink's Ser6 Pro) for My Home Server
-date: 2023-09-26 12:00:00 -500
+date: 2023-10-03 12:00:00 -500
 categories: [homelab, hardware, mini pc]
 tags: [servers,beelink,ser6 pro]
 ---
+
+![Ser6 Pro](/assets/lib/ser6-pro.jpg)
 
 ## Why I Chose Used Mini PCs (Beelink's Ser6 Pro) for My Home Server
 
@@ -18,8 +20,6 @@ The Beelink Ser6 Pro boasts impressive hardware specifications, making it a comp
 - **32GB of RAM**: Memory is a crucial component for any server, and the 32GB of RAM in the Ser6 provides ample capacity for multitasking and running resource-intensive applications.
 
 - **Compact Form Factor**: Mini PCs are known for their space-saving design. The Ser6's small footprint means it can fit snugly in tight spaces, making it ideal for a home server setup.
-
-![image][Ser 6 Pro]
 
 ## Energy Efficiency
 
@@ -42,5 +42,3 @@ Perhaps the most compelling reason for choosing used mini PCs like the Beelink S
 - **Cost-Effective Homelab**: Whether you're running a personal website, a media server, or a home automation system, mini PCs provide a budget-friendly way to set up a homelab for experimentation and learning.
 
 To sum it up, the decision to choose used mini PCs, such as the Beelink Ser6 Pro, for my home server was driven by their power, energy efficiency, and cost-effectiveness. These compact machines have proven to be more than capable of handling my server needs while aligning with my commitment to reducing waste and minimizing environmental impact. By opting for a sustainable and budget-friendly solution, you can create a robust home server setup without breaking the bank.
-
-[Ser 6 Pro]: https://www.notebookcheck.net/fileadmin/_processed_/c/1/csm_PXL_20230418_022340152_e454295ec1.jpg
