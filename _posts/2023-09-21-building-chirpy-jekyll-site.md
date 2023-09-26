@@ -5,6 +5,8 @@ categories: [self-hosted, website]
 tags: [jekyll,website,github,gitlab]
 ---
 
+![Chirpy Logo](</assets/lib/chirpy logo.jpg>)
+
 If you're looking to create a beautiful and customizable website quickly, Jekyll and the Chirpy theme are an excellent choice. In this tutorial, I'll guide you through the process of setting up your website (hosted for free on GitHub), from installing dependencies to creating your first post.
 
 ## Prerequisites: Install Dependencies
@@ -178,7 +180,7 @@ git commit -m "made some changes"
 git push
 ```
 
-Alternatively, you can use the `source control` tab in Visual Studio Code to commit, make a comment, and push out the changes.
+Alternatively, you can use the `source control` tab in Visual Studio Code to stage, commit, make a comment, and push out the changes.
 
 ## Conclusion
 
