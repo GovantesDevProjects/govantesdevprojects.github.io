@@ -5,8 +5,7 @@ categories: [proxmox,homelab]
 tags: [proxmox,homelab,]
 ---
 
-![!\[Small Server\](/assets/lib/small-server.jpg)
-](../assets/Images/small-server.jpg)
+![Small Server](/assets/images/small-server.jpg)
 
 ## Introduction
 
@@ -20,7 +19,7 @@ Before we dive into the Proxmox setup, it's essential to ensure that your system
    * Disable the two `enterprise.proxmox.com/...` repositories
    * Add the `pve-no-subscription` repository
    * Your repositories page should now look like this:
-    ![!\[Repository Example\](</assets/lib/repositories-config.png>)](../assets/Images/repositories-config.png)
+    ![Repository Example](/assets/images/repositories-config.png)
 2. Now update the repositories
 
    ```bash
@@ -47,7 +46,7 @@ Proxmox supports various storage backends, and ZFS is a popular choice due to it
 
   2. Go to disks/ZFS and click `Create:ZFS`
 
-      ![!\[ZFS Pool\](/assets/lib/nvme_pool.png)](../assets/Images/nvme_pool.png)
+      ![ZFS Pool](/assets/images/nvme_pool.png)
 
   3. I now have a 430GB ZFS pool on my boot drive. In future posts, I'll cover how to create new directories within your ZFS pool.
 
@@ -55,7 +54,7 @@ Proxmox supports various storage backends, and ZFS is a popular choice due to it
 
   1. Ensuring the health of your hard drives is critical. To ensure SMART Monitoring is enabled using the GUI:
 
-      ![!\[SMART Monitoring GUI\](</assets/lib/smart-monitoring.png>)](../assets/Images/smart-monitoring.png)
+      ![SMART Monitoring GUI](assets/images/smart-monitoring.png)
 
       * By default, SMART Monitoring is enabled
   2. Using the command line:
@@ -133,7 +132,7 @@ PCI passthrough allows you to assign physical devices to virtual machines. Ensur
 To create VLANs in Proxmox, you can use the Linux bridge as a basis:
 
 1. Go to networks, select Linux Bridge, and edit
-  ![!\[!\\[VLAN aware\\](vlan%20aware.png)\](</assets/lib/vlan-aware.png>)](../assets/Images/vlan-aware.png)
+  ![VLAN aware](/assets/images/vlan-aware.png)
 2. Check VLAN aware and click OK
 
 ### Step 6: Scheduling Backups with Proxmox
