@@ -1,6 +1,6 @@
 ---
 title: The Crucial Role of a Separate Testing Server in Your Homelab Environment
-date: 2023-09-28 12:00:00 -500
+date: 2023-10-28 12:00:00 -500
 categories: [homelab,testing]
 tags: [testing,production,risk management,cluster]
 ---
