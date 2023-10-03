@@ -5,7 +5,8 @@ categories: [homelab, hardware, mini pc]
 tags: [servers,beelink,ser6 pro]
 ---
 
-![Ser6 Pro](/assets/lib/ser6-pro.jpg)
+![ser6-pro](/assets/images/ser6-pro.jpg)
+_Ser6 Pro_
 
 ## Why I Chose Used Mini PCs (Beelink's Ser6 Pro) for My Home Server
 
