@@ -23,63 +23,77 @@ First, let's create a PowerShell script to handle the automation. Open a text ed
 # Define the folder path to monitor
 $folderPath = "C:\Path\To\Your\Folder"
 
-# Register a FileSystemWatcher to monitor the folder for changes
-$watcher = New-Object System.IO.FileSystemWatcher
-$watcher.Path = $folderPath
-$watcher.Filter = "*.ppsx"
-$watcher.IncludeSubdirectories = $false
-$watcher.EnableRaisingEvents = $true
+# Function to close any running PowerPoint instances
+function ClosePowerPointInstances {
+    Get-Process | Where-Object { $_.ProcessName -like "*POWERPNT*" } | ForEach-Object { $_.CloseMainWindow() }
+}
 
 # Function to open a PowerPoint slideshow
-function Open-Ppsx {
-    param (
-        [string]$ppsxPath
-    )
-
-    # Close any running PowerPoint slideshow
-    Stop-Process -Name "POWERPNT" -Force -ErrorAction SilentlyContinue
-
-    # Start the PowerPoint slideshow
-    Start-Process -FilePath "C:\Program Files\Microsoft Office\root\Office16\POWERPNT.EXE" -ArgumentList "/S `"$ppsxPath`"" -Wait
+function OpenPowerPointSlideshow($filePath) {
+    try {
+        if ($filePath -ne $null -and $filePath -ne "") {
+            # Close any running PowerPoint instances
+            ClosePowerPointInstances
+            
+            # Add a delay before opening the PowerPoint slideshow
+            Start-Sleep -Seconds 2
+            
+            # Open the PowerPoint slideshow using Invoke-Item
+            Invoke-Item $filePath
+        } else {
+            Write-Host "File path is null or empty."
+        }
+    } catch {
+        Write-Host "Error: $($_.Exception.Message)"
+    }
 }
 
-# Event handler when a new .ppsx file is created
-$createdHandler = Register-ObjectEvent -InputObject $watcher -EventName Created -Action {
-    $filePath = $Event.SourceEventArgs.FullPath
-    Write-Host "New .ppsx file created: $filePath"
-    Open-Ppsx -ppsxPath $filePath
-}
+# Initialize an empty hashtable to keep track of processed files
+$processedFiles = @{}
 
-# Keep the script running
+# Create an infinite loop to periodically scan the folder
 try {
     while ($true) {
-        Start-Sleep -Seconds 60
+        $files = Get-ChildItem -Path $folderPath -File -Filter "*.ppsx"
+        
+        foreach ($file in $files) {
+            $filePath = $file.FullName
+            
+            # Check if the file has been processed before
+            if (-not $processedFiles.ContainsKey($filePath)) {
+                Write-Host "New .ppsx file created: $filePath"
+                
+                # Open the PowerPoint slideshow
+                OpenPowerPointSlideshow $filePath
+                
+                # Add the file to the processed files hashtable
+                $processedFiles[$filePath] = $true
+            }
+        }
+        
+        Start-Sleep -Seconds 2  # Adjust the sleep interval as needed
     }
 }
 finally {
-    # Clean up and unregister the event handler when done
-    Unregister-Event -SourceIdentifier $createdHandler.Name
-    $watcher.Dispose()
+    # Close any running PowerPoint instances and clean up
+    ClosePowerPointInstances
 }
 ```
 
-In the script, replace `$folderPath` with the actual path to the folder you want to monitor. Also, ensure that the `Start-Process` command points to the correct location of PowerPoint on your system.
+In the script, replace `$folderPath` with the actual path to the folder you want to monitor. Also, ensure that the `Get-Process` command points to the correct location (or a rough guestimate) of PowerPoint on your system.
 
-## Step 2: Set Up a Scheduled Task
+## The errors that were encountered (and how they were handled)
 
-Now that we have our PowerShell script ready, let's set up a scheduled task to trigger it whenever a new `.ppsx` file is added to the folder.
+* ```ps1
+    "Get-Process : Cannot find a process with the name "POWERPNT". Verify the process name and call the cmdlet again.
+    At line:7 char:5
+    +     Get-Process "POWERPNT" | ForEach-Object { $_.CloseMainWindow() }
+    +     ~~~~~~~~~~~~~~~~~~~~~~
+        + CategoryInfo          : ObjectNotFound: (POWERPNT:String) [Get-Process], ProcessCommandException
+        + FullyQualifiedErrorId : NoProcessFoundForGivenName,Microsoft.PowerShell.Commands.GetProcessCommand"
+    ```
 
-1. Open Task Scheduler from the Start menu.
-2. In the right-hand pane, click on "Create Basic Task..."
-3. Follow the wizard to create a new basic task. Provide a name and description for the task.
-4. Choose the "When a specific event is logged" trigger.
-5. Configure the trigger to monitor the folder where your `.ppsx` files are located. Set the Source to "PowerShell" and the Event ID to "1000" (this corresponds to the creation event in PowerShell).
-6. Select "Start a Program" as the action and browse to the location of your PowerShell script (`OpenPpsx.ps1`).
-7. Complete the wizard, review your settings, and click "Finish."
-
-Now, whenever a new `.ppsx` file is added to the specified folder, the PowerShell script will be triggered to open it as a slideshow and close any currently running PowerPoint slideshow.
-
-Remember to adapt the script and Task Scheduler settings to your specific needs and environment.
+  This was solved by changing `"POWERPNT"` to `"*POWERPNT*"`
 
 ## Conclusion
 
