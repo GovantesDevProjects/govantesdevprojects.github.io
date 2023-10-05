@@ -5,7 +5,7 @@ categories: [scripts, powershell]
 tags: [windows,powershell,scripts,automation]
 ---
 
-Do you frequently use PowerPoint slideshows (.ppsx files) and want to automate the process of opening them when they are added to a specific folder? In this guide, we'll walk you through creating a PowerShell script that automatically opens `.ppsx` files from a folder and closes the current slideshow being presented. This can be especially helpful for scenarios like presentations and displays where you need to display new slides quickly.
+Do you frequently use PowerPoint slideshows (`.ppsx` files) and want to automate the process of opening them when they are added to a specific folder? In this guide, we'll walk you through creating a PowerShell script that automatically opens `.ppsx` files from a folder and closes the current slideshow being presented. This can be especially helpful for scenarios like presentations and displays where you need to display new slides quickly.
 
 ## Prerequisites
 
@@ -15,9 +15,9 @@ Before we begin, make sure you have the following:
 2. Microsoft PowerPoint installed on your system.
 3. A folder where you want to monitor for `.ppsx` files.
 
-## Step 1: Create a PowerShell Script
+## The PowerShell Script
 
-First, let's create a PowerShell script to handle the automation. Open a text editor and paste the following code:
+Let's create a PowerShell script to handle the automation. Open a text editor and paste the following code:
 
 ```powershell
 # Define the folder path to monitor
@@ -82,19 +82,25 @@ finally {
 
 In the script, replace `$folderPath` with the actual path to the folder you want to monitor. Also, ensure that the `Get-Process` command points to the correct location (or a rough guestimate) of PowerPoint on your system.
 
+* Under processes, in my environment, PowerPoint shows as `Microsoft PowerPoint`, but for some reason, it doesn't appear to work properly. This is because when you use `Get-Process "Microsoft PowerPoint"`, PowerShell is looking for a process with the exact name `"Microsoft PowerPoint."` If the actual process name is different, it won't find a match.
+
+  ********************************
+
 ## The errors that were encountered (and how they were handled)
 
-* ```ps1
-    "Get-Process : Cannot find a process with the name "POWERPNT". Verify the process name and call the cmdlet again.
-    At line:7 char:5
-    +     Get-Process "POWERPNT" | ForEach-Object { $_.CloseMainWindow() }
-    +     ~~~~~~~~~~~~~~~~~~~~~~
-        + CategoryInfo          : ObjectNotFound: (POWERPNT:String) [Get-Process], ProcessCommandException
-        + FullyQualifiedErrorId : NoProcessFoundForGivenName,Microsoft.PowerShell.Commands.GetProcessCommand"
-    ```
+```ps1
+  "Get-Process : Cannot find a process with the name "POWERPNT". Verify the process name and call the cmdlet again.
+  At line:7 char:5
+  +     Get-Process "POWERPNT" | ForEach-Object { $_.CloseMainWindow() }
+  +     ~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : ObjectNotFound: (POWERPNT:String) [Get-Process], ProcessCommandException
+      + FullyQualifiedErrorId : NoProcessFoundForGivenName,Microsoft.PowerShell.Commands.GetProcessCommand"
+  ```
 
-  This was solved by changing `"POWERPNT"` to `"*POWERPNT*"`
+  This was solved by changing `"POWERPNT"` to `"*POWERPNT*"`. Using wildcards like `Get-Process "*POWERPNT*"` allows you to find processes that contain `"POWERPNT"` in their names. This is more flexible because it accounts for variations in the process name and can match any process name that includes `"POWERPNT."`
+
+It's a common practice to use wildcards when searching for processes by name to ensure compatibility across different systems and versions of applications.
 
 ## Conclusion
 
-Automating the process of opening and closing PowerPoint slideshows with PowerShell can be a time-saver, especially in scenarios where you need to display new slides frequently. By following the steps outlined in this guide, you can streamline your presentation or display setup and ensure a seamless experience for your audience.
+Automating the process of opening and closing PowerPoint slideshows with PowerShell can be a time-saver, especially in scenarios where you need to display new slides frequently. By following this guide, you can streamline your presentation or display setup and ensure a seamless experience for your audience.
